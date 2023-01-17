@@ -1,10 +1,12 @@
+import 'package:spotlas/components/date.dart';
+
 class Item {
   late String authorName, authorTag, authorImage;
   late String spotName, spotLocation, spotImage;
   late String caption;
-  late List<String> media;
-  late List<String> tags;
-  late String date;
+  late List<String> media = [];
+  late List<String> tags = [];
+  late String date = "";
 
   Item(
       this.authorName, this.authorTag, this.authorImage,
@@ -36,12 +38,25 @@ class Item {
     caption = jsonCaption['text'].toString();
 
     // Media
-
+    List<dynamic> jsonMedia = json['media'];
+    for (var element in jsonMedia) {
+      Map<String, dynamic> elementJson = element;
+      media.add(elementJson['url'].toString());
+    }
 
     // Tags
-
-
-
+    if (jsonCaption.containsKey('tags')) {
+      List<dynamic> jsonTags = jsonCaption['tags'];
+      for (var element in jsonTags) {
+        Map<String, dynamic> elementJson = element;
+        tags.add(elementJson['display_text'].toString());
+      }
+    }
+    
     // Date
+    DateTime postDate = DateTime.parse(json['created_at'].toString());
+    DateTime nowDate = DateTime.now();
+    Duration dateDifference = nowDate.difference(postDate);
+    date = "${dateDifference.inDays.toString()} days ago";
   }
 }

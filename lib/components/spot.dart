@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Author extends StatelessWidget {
-  final String authorName, authorTag, authorImage;
-  const Author(this.authorName, this.authorTag, this.authorImage, {super.key});
+class Spot extends StatelessWidget {
+  final String spotName, spotLocation, spotImage;
+  const Spot(this.spotName, this.spotLocation, this.spotImage, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,9 @@ class Author extends StatelessWidget {
             ),
             child: CircleAvatar(
               radius: 33.00,
-              backgroundColor: Colors.pink,
+              backgroundColor: Colors.white,
               child: CircleAvatar(
-                backgroundImage: NetworkImage(authorImage),
+                backgroundImage: NetworkImage(spotImage),
                 radius: 28.00,
               ),
             ),
@@ -38,7 +38,7 @@ class Author extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(authorTag, style: const TextStyle(
+                Text(spotName, style: const TextStyle(
                   fontSize: 18.00,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -52,9 +52,9 @@ class Author extends StatelessWidget {
                   ],
                 )),
                 const SizedBox(
-                  height: 4.00
+                    height: 4.00
                 ),
-                Text(authorName, style: const TextStyle(
+                Text(spotLocation, style: const TextStyle(
                   fontSize: 15.00,
                   fontWeight: FontWeight.normal,
                   color: Colors.white,
@@ -72,7 +72,7 @@ class Author extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {},
-            icon: SvgPicture.asset('assets/Options.svg', color: Colors.white, width: 28.00, height: 28.00),
+            icon: SvgPicture.asset('assets/Star_Border.svg', color: Colors.white, width: 28.00, height: 28.00),
           ),
         ],
       ),
