@@ -1,5 +1,3 @@
-import 'package:spotlas/components/date.dart';
-
 class Item {
   late String authorName, authorTag, authorImage;
   late String spotName, spotLocation, spotImage;

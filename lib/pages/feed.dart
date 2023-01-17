@@ -35,13 +35,15 @@ class _FeedState extends State<Feed> {
     var feedDataResponse = json.decode(feedDataRequest.body);
 
     for (var feedDataElement in feedDataResponse) {
-      feedData.add(Item.fromJson(feedDataElement));
+      setState(() {
+        feedData.add(Item.fromJson(feedDataElement));
+      });
     }
 
     setState(() {
       loading = false;
       isAllLoaded = feedDataResponse.isEmpty;
-      feedDataPage++;
+      //feedDataPage++;
     });
   }
 
@@ -49,6 +51,12 @@ class _FeedState extends State<Feed> {
   void initState() {
     super.initState();
     fetchFeedData();
+
+    controller.addListener(() {
+      if (controller.position.maxScrollExtent == controller.offset) {
+        fetchFeedData();
+      }
+    });
   }
 
   @override
